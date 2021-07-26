@@ -8,7 +8,8 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start:test": "cross-env NODE_ENV=test node index.js",
-    "populate-db": "node utils/populate-db.js"
+    "populate-db": "node utils/populate-db.js",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
