@@ -10,6 +10,12 @@ on:
     types:
       [opened, synchronize]
 
+env:
+  MONGODB_TEST_URI: ${{secrets.MONGODB_TEST_URI}}
+  MONGODB_URI: ${{secrets.MONGODB_URI}}
+  PORT: ${{secrets.PORT}}
+  TOKEN_SECRET: ${{secrets.TOKEN_SECRET}}
+
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
