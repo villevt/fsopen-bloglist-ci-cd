@@ -7,15 +7,15 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
-    "test:server": "cross-env NODE_ENV=test jest --verbose --runInBand tests/*.js",
-    "test:client": "cross-env NODE_ENV=test jest --verbose --runInBand --env=jsdom frontend/**/**/*test.js",
     "start:test": "cross-env NODE_ENV=test node index.js",
     "populate-db": "node utils/populate-db.js",
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
+    "@babel/runtime": "^7.14.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "cross-env": "^7.0.3",
@@ -40,6 +40,19 @@
     "react-scripts": "^4.0.3"
   },
   "jest": {
-    "testEnvironment": "node"
+    "projects": [
+      {
+        "testEnvironment": "node",
+        "testMatch": [
+          "<rootDir>/tests/*test.js"
+        ]
+      },
+      {
+        "testEnvironment": "jsdom",
+        "testMatch": [
+          "<rootDir>/frontend/**/**/*.test.js"
+        ]
+      }
+    ]
   }
 }
