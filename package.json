@@ -10,7 +10,8 @@
     "start:test": "cross-env NODE_ENV=test node index.js",
     "cypress:open": "concurrently \"cross-env NODE_ENV=test node index.js\" \"cypress open\"",
     "populate-db": "node utils/populate-db.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.5",
