@@ -28,5 +28,5 @@ jobs:
         run: npm install
       - name: lint
         run: npm run lint
-      - name: backend test
-        run: npm run test:server
+      - name: test
+        run: npm test
