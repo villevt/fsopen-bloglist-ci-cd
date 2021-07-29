@@ -4,8 +4,6 @@ import { render, fireEvent } from "@testing-library/react"
 import NewBlog from "./NewBlog"
 
 describe("<NewBlog />", () => {
-  const createBlog = jest.fn()
-
   const newTitle = "New Title"
   const newAuthor = "New Author"
   const newUrl = "New URL"
