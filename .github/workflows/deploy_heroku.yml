@@ -35,6 +35,7 @@ jobs:
         with:
           start: npm run start:test
       - name: Deploy to Heroku
+        if: ${{ github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
