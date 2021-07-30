@@ -7,7 +7,7 @@
     "dev": "concurrently \"cross-env NODE_ENV=development nodemon index.js\" \"cross-env PORT=3000 react-scripts start\"",
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
-    "start:test": "cross-env NODE_ENV=test node index.js",
+    "start:test": "concurrently \"cross-env NODE_ENV=test node index.js\" \"cross-env PORT=3003 react-scripts start\"",
     "cypress:run": "cypress run",
     "populate-db": "node utils/populate-db.js",
     "lint": "eslint .",
