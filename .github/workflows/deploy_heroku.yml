@@ -41,3 +41,16 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: misty-morning124
           heroku_email: ville.turku99@gmail.com
+  version_tag:
+    if: ${{ github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') }}
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') }}
+        uses: anothrNick/github-tag-action@1.33.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          DEFAULT_BUMP: patch
