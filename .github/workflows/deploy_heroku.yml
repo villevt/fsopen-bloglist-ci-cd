@@ -41,6 +41,8 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: misty-morning124
           heroku_email: ville.turku99@gmail.com
+          healthcheck: https://misty-morning124.herokuapp.com/
+          rollbackonhealthcheckfailed: true
   version_tag:
     if: ${{ github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') }}
     runs-on: ubuntu-18.04
