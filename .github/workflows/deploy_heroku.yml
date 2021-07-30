@@ -43,6 +43,24 @@ jobs:
           heroku_email: ville.turku99@gmail.com
           healthcheck: https://misty-morning124.herokuapp.com/
           rollbackonhealthcheckfailed: true
+      - name: slack-success
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo, message, commit, author, took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if:
+          github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') && success()
+      - name: slack-failure-build
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo, message, commit, author, took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if:
+          failure()
   version_tag:
     if: ${{ github.event_name == 'push' && !contains( join( github.event.commits.*.message ), '#skip') }}
     runs-on: ubuntu-18.04
@@ -57,3 +75,12 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
+      - name: slack-failure-tag
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo, message, commit, author, took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if:
+          failure()
